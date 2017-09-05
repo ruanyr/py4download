@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<py4d>
+    <!-- 下载线程数，能够同时进行的下载任务数 -->
+    <property name="thread-size" value="35"/>
+    <!-- 自定义文件格式后缀（当链接无法明确指定文件格式时使用），默认为空字符串 -->
+    <property name="format" value=""/>
+    <!-- 连接超时时间 -->
+    <property name="connect-timeout" value="6000"/>
+    <!-- 下载超时时间 -->
+    <property name="read-timeout" value="6000"/>
+    <!-- 请求HTTP方法 -->
+    <property name="method" value="get"/>
+
+    <!-- 自定义下载时的HTTP请求头部，适用于某些校验头部的服务器 -->
+    <headers>
+		<header>
+			<name>User-Agent</name>
+			<value>Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36</value>
+		</header>
+		
+	</headers>
+</py4d>
