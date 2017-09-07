@@ -576,7 +576,6 @@ class MessageOutputTask(threading.Thread):
         __total_width = len(str(totallinks))
         while True:
             finished = _getFinished()
-
             msgstr = ""
             msgstr += "| "
             msgstr += fixLength(finished, 6, "0")
@@ -595,7 +594,7 @@ class MessageOutputTask(threading.Thread):
             msgstr += "|"
             msgstr += fixLength(getFailed(), 6, " ")
             msgstr += "|"
-            sys.stdout.write(msgstr + "\r")
+            print(msgstr, end='\r')
             resetLastSecondBytes()
             if finished == totallinks:
                 print("\n+--------------------------------------------------------------------------------------+")
@@ -623,6 +622,8 @@ def startDownload():
     initPool()  # 初始化线程池
     printWelcome()
     resources = getAllResources()   #获取所有的下载资源
+    msgoutput = MessageOutputTask()    # 定时任务重设即时速度
+    msgoutput.start()
     for url, dirName in resources.items():
         thread = getThread()
         thread.assignTask(url, dirName)
@@ -630,6 +631,5 @@ def startDownload():
 
 initConf()  #加载配置文件
 startDownload()
-msgoutput = MessageOutputTask()    # 定时任务重设即时速度
-msgoutput.start()
+
 
